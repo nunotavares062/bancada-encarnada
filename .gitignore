@@ -1,0 +1,10 @@
+# ficheiros únicos com imagens em base64 (entregas à parte, não vão para o site)
+Bancada-Encarnada-site*.html
+# versões antigas geradas e ficheiros temporários
+site/index-v1.html
+site/index-v2.html
+site/index-v3.html
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

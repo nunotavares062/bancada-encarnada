@@ -1,0 +1,4 @@
+{
+  "_nota": "Cada entrada precisa de autorização escrita do autor. Campos: imagem (caminho em img/mural/), alt, autor (nome, iniciais ou vazio), frase, local, data (AAAA-MM-DD). Lista vazia = o mural mostra só o convite.",
+  "itens": []
+}

@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bancada Encarnada · Plano de marca e loja</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F5F3EF; --sheet:#FFFFFF; --ink:#202126; --muted:#5F5E63; --rule:#DDDAD3;
+  --red:#C41632; --wine:#8F1026; --gold:#D5B15A; --coal:#202126; --coal-2:#2B2C32;
+  --display:"Montserrat","Arial",sans-serif; --body:"Inter Tight","Segoe UI",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--display);font-weight:800;text-transform:uppercase;line-height:1.05;letter-spacing:-.01em;text-wrap:balance}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+@media(min-width:700px){.wrap{padding:0 44px}}
+.eyebrow{display:inline-flex;gap:10px;align-items:center;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.eyebrow::before{content:"";width:18px;height:2px;background:currentColor}
+.num{font-family:var(--display);color:var(--gold)}
+p.lead{font-size:18px;color:var(--muted);max-width:64ch}
+small,.note{font-size:13px;color:var(--muted)}
+
+/* capa */
+.cover{background:var(--coal);color:#fff;position:relative;overflow:hidden}
+.cover::before,footer::before{content:"";display:block;height:6px;background:linear-gradient(90deg,var(--red) 0 70%,var(--gold) 70%)}
+.cover .frame{margin:12px;border:1px solid rgba(213,177,90,.45);padding:4px}
+.cover .inner{border:1px dashed rgba(255,255,255,.16);padding:clamp(36px,6vw,80px) clamp(20px,5vw,60px);display:grid;gap:44px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 24px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.meta b{color:#fff;font-weight:600}
+.mono{display:inline-grid;place-items:center;width:64px;height:64px;border:2px solid var(--gold);color:var(--gold);font-family:var(--display);font-weight:900;font-size:24px;letter-spacing:.02em}
+.cover h1{font-size:clamp(2.3rem,6.4vw,4.6rem);max-width:13ch}
+.cover h1 em{font-style:normal;color:var(--red)}
+.cover p{color:rgba(255,255,255,.75);max-width:60ch;font-size:17px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12)}
+.kpis div{background:var(--coal);padding:18px 20px;display:grid;gap:4px}
+.kpis b{font-family:var(--display);font-size:24px;color:var(--gold)}
+.kpis span{font-size:13px;color:rgba(255,255,255,.65)}
+
+/* capítulos */
+.ch{padding:64px 0 48px;border-top:1px solid var(--rule)}
+.ch-head{display:grid;gap:12px;max-width:760px;margin-bottom:32px}
+.ch h2{font-size:clamp(1.7rem,3.6vw,2.5rem)}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:var(--sheet);border:1px solid var(--rule);padding:22px 24px;display:grid;gap:10px;align-content:start;border-top:3px solid var(--red);min-width:0;overflow:hidden}
+.card.gold{border-top-color:var(--gold)}
+.card.coal{background:var(--coal);color:#fff;border-color:var(--coal)}
+.card.coal h3{color:var(--gold)}
+.card.coal p,.card.coal li{color:rgba(255,255,255,.78)}
+.card h3{font-size:15px;letter-spacing:.02em}
+.card p,.card li{font-size:15px;color:var(--muted)}
+.card ul{padding-left:18px;display:grid;gap:6px}
+.tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red);border:1px solid currentColor;padding:2px 8px;border-radius:999px}
+.tag.gold{color:#8a6d22}
+
+table{width:100%;border-collapse:collapse;background:var(--sheet);border:1px solid var(--rule);font-size:15px}
+th,td{padding:12px 14px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+th{font-family:var(--display);font-size:12px;letter-spacing:.1em;text-transform:uppercase;background:var(--coal);color:#fff;font-weight:700}
+td:not(:first-child),th:not(:first-child){text-align:right;white-space:nowrap}
+tr.total td{font-weight:700;background:#FBF6EA}
+tr.price td{font-weight:800;color:var(--red);background:#FDF0F2}
+td.l,th.l{text-align:left;white-space:normal}
+
+.pal{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:8px}
+.pal div{min-width:0;min-height:70px;display:grid;align-content:end;padding:10px;font-size:11px;line-height:1.3;border:1px solid var(--rule);overflow-wrap:anywhere}
+.pal b{font-family:var(--display);font-size:12px;display:block}
+.grid>*{min-width:0}
+
+.steps{display:grid;gap:14px}
+.step{display:grid;grid-template-columns:56px 1fr;gap:18px;background:var(--sheet);border:1px solid var(--rule);padding:22px}
+.step .n{font-family:var(--display);font-weight:900;font-size:34px;color:var(--gold);line-height:1}
+.step h3{font-size:17px;margin-bottom:6px}
+.step .goal{display:inline-block;margin-top:10px;font-size:13px;font-weight:700;color:var(--red)}
+.step ul{padding-left:18px;color:var(--muted);font-size:15px;display:grid;gap:4px}
+
+.rules{display:grid;gap:10px}
+.rule{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start;font-size:15px}
+.rule i{width:22px;height:22px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:12px;margin-top:3px}
+.callout{background:#FBF6EA;border-left:4px solid var(--gold);padding:18px 22px;font-size:15px}
+
+footer{background:var(--coal);color:rgba(255,255,255,.7);margin-top:64px}
+footer .wrap{padding-top:40px;padding-bottom:40px;display:grid;gap:10px;font-size:14px}
+footer b{color:#fff}
+
+/* impressão */
+@page{size:A4;margin:0}
+@media print{
+  body{background:#fff;font-size:14px}
+  .cover{height:100vh;break-after:page;display:block}
+  .cover .frame{margin:8mm;height:calc(100vh - 16mm - 6px);display:flex}
+  .cover .inner{flex:1;display:flex;flex-direction:column;justify-content:center;gap:36px}
+  .ch{break-before:page;padding:8px 0 8px;border-top:0}
+  .ch-head{break-after:avoid;break-inside:avoid;margin-bottom:22px}
+  h3{break-after:avoid}
+  .card,.step,table,.callout,.rule,.grid,.pal{break-inside:avoid}
+  .kpis div,.cover,.card.coal,th,footer,.pal div,tr.total td,tr.price td,.callout,.rule i,.tag{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  footer{break-inside:avoid;margin-top:36px}
+  footer .wrap{padding-top:28px;padding-bottom:28px}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+</head>
+<body>
+
+<header class="cover">
+  <div class="frame"><div class="inner">
+    <div style="display:grid;gap:26px">
+      <div class="meta"><span>Plano de marca e loja · <b>Bancada Encarnada</b></span><span>Impressão 3D · Instagram · WhatsApp · Site-catálogo</span><span>Novembro 2026</span></div>
+      <span class="mono">BE</span>
+      <h1>Uma marca para quem vive o Benfica <em>em cada detalhe</em></h1>
+    </div>
+    <p>Artigos originais, produzidos em impressão 3D, para benfiquistas em Portugal e no estrangeiro. Este documento fixa a identidade, os três primeiros produtos, os números por unidade, o conteúdo e o plano dos primeiros 90 dias.</p>
+    <div class="kpis">
+      <div><b>3 produtos</b><span>Caneca com copo interior, porta-chaves e peça de secretária</span></div>
+      <div><b>29,90 €</b><span>Preço alvo da caneca, com custo estimado de 9 a 11 €</span></div>
+      <div><b>400 a 700 €</b><span>Investimento de arranque, sem contar a impressora</span></div>
+      <div><b>90 dias</b><span>Validar, vender em Portugal, crescer</span></div>
+    </div>
+  </div></div>
+</header>
+
+<main>
+
+<section class="ch" id="ideia">
+  <div class="wrap">
+    <div class="ch-head">
+      <span class="eyebrow"><span class="num">01</span> A ideia</span>
+      <h2>Uma marca só, para um clube só</h2>
+      <p class="lead">Em vez de uma página com canecas de vários clubes, a Bancada Encarnada é uma marca de lifestyle benfiquista que vende por mensagem e mostra os produtos num site-catálogo. As pessoas seguem porque gostam do Benfica e compram porque gostam dos produtos.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card"><span class="tag">Posicionamento</span><h3>Produtos para quem vive o Benfica dentro e fora do estádio</h3><p>Presentes e colecionáveis originais, com acabamento cuidado, feitos em Portugal, em pequenas séries.</p></div>
+      <div class="card"><span class="tag">Público</span><h3>Benfiquistas em Portugal e emigrantes</h3><p>Primeiro Portugal, onde os portes são baixos e a entrega é rápida. Depois França, Suíça e Luxemburgo, onde a saudade do clube é maior.</p></div>
+      <div class="card"><span class="tag">Como se vende</span><h3>Por mensagem, com o site a servir de catálogo</h3><p>Os pedidos chegam por Instagram e WhatsApp. O site mostra os produtos e envia para a conversa. Sem carrinho nem pagamento online nesta fase.</p></div>
+    </div>
+    <div class="callout" style="margin-top:20px"><b>Decisões já tomadas.</b> Nome: Bancada Encarnada. Estilo: premium e moderno, com detalhes desportivos. Slogan: Paixão em cada detalhe. Produção: Bambu Lab P2S Combo com AMS, em PLA e PETG. Caneca com copo interior em inox, para ser usada a sério e não só para decorar. Vendas só por mensagem no Instagram e no WhatsApp. Site como catálogo, sem loja online.</div>
+  </div>
+</section>
+
+<section class="ch" id="identidade">
+  <div class="wrap">
+    <div class="ch-head">
+      <span class="eyebrow"><span class="num">02</span> Identidade</span>
+      <h2>Premium e moderna, reconhecível sem precisar de emblemas</h2>
+      <p class="lead">Encarnado como cor principal, carvão e branco como base, dourado só em pequenos detalhes. Tipografia forte e limpa. Fotografia de produto com fundo escuro e luz dura.</p>
+    </div>
+    <div class="grid g2">
+      <div class="card gold">
+        <h3>Paleta</h3>
+        <div class="pal">
+          <div style="background:#C41632;color:#fff"><b>Encarnado</b>#C41632</div>
+          <div style="background:#8F1026;color:#fff"><b>Bordô</b>#8F1026</div>
+          <div style="background:#202126;color:#fff"><b>Carvão</b>#202126</div>
+          <div style="background:#D5B15A;color:#202126"><b>Dourado</b>#D5B15A</div>
+          <div style="background:#FFFFFF;color:#202126"><b>Branco</b>#FFFFFF</div>
+        </div>
+        <p>O dourado nunca passa de 10 % de uma peça ou de um ecrã. É detalhe, não cor de fundo.</p>
+      </div>
+      <div class="card">
+        <h3>Sistema de marca</h3>
+        <ul>
+          <li><b>Logótipo principal:</b> nome completo em duas linhas, Montserrat 900, encarnado sobre carvão ou branco.</li>
+          <li><b>Monograma BE:</b> para embalagens, perfil das redes e marcação discreta nos produtos.</li>
+          <li><b>Selo circular:</b> "Feito em Portugal · Bancada Encarnada" para etiquetas e base das peças.</li>
+          <li><b>Tom de voz:</b> português de Portugal, próximo, por tu, com orgulho e sem exageros.</li>
+        </ul>
+      </div>
+    </div>
+    <table style="margin-top:20px">
+      <tr><th class="l">Elemento</th><th class="l">Direção</th></tr>
+      <tr><td class="l">Nome</td><td class="l">Bancada Encarnada. Domínios bancadaencarnada.pt e .com sem registo a 18 de novembro de 2026. Utilizador no Instagram e TikTok a confirmar no dia 1.</td></tr>
+      <tr><td class="l">Personalidade</td><td class="l">Apaixonada, moderna, com humor de bancada.</td></tr>
+      <tr><td class="l">Estilo visual</td><td class="l">Desportivo, premium e urbano. Fundos escuros, produto em destaque, pouco texto.</td></tr>
+      <tr><td class="l">Fotografia</td><td class="l">Sempre o produto real, nunca renderizações. Mãos a montar, copo a encaixar, embalagem a fechar.</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="ch" id="produto">
+  <div class="wrap">
+    <div class="ch-head">
+      <span class="eyebrow"><span class="num">03</span> Produto</span>
+      <h2>Três produtos para começar, um deles é a estrela</h2>
+      <p class="lead">Coleção pequena, bem feita, que cabe na capacidade de uma impressora. Novas peças só quando a procura o pedir.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card coal">
+        <span class="tag" style="color:var(--gold)">Produto principal</span>
+        <h3>Caneca com copo interior</h3>
+        <p>Camisa exterior impressa em 3D com relevo multicolor, copo de inox 350 ml de parede dupla, amovível. Serve para beber café ou chá quente e lava-se à parte.</p>
+        <ul>
+          <li>Altura total 11 a 12 cm, a medida de uma caneca real</li>
+          <li>2 peças: corpo com pega integrada e placa do emblema</li>
+          <li>Preço alvo 29,90 €</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="tag">Compra por impulso</span>
+        <h3>Porta-chaves</h3>
+        <p>Peça pequena, duas ou três cores, argola metálica. Imprime-se às dezenas nos tempos mortos da impressora e completa qualquer encomenda.</p>
+        <ul><li>Preço alvo 7,90 €, ou 3 por 19,90 €</li><li>Variantes com número e nome</li></ul>
+      </div>
+      <div class="card">
+        <span class="tag">Prenda</span>
+        <h3>Peça de secretária</h3>
+        <p>Uma miniatura colecionável, a escolher no primeiro mês entre uma bancada em miniatura, um suporte de telemóvel ou um porta-canetas com relevo.</p>
+        <ul><li>Preço alvo 24,90 a 34,90 €</li><li>Edições numeradas em pequenas séries</li></ul>
+      </div>
+    </div>
+
+    <h3 style="margin:36px 0 14px;font-size:17px">Regras técnicas da caneca</h3>
+    <div class="rules">
+      <div class="rule"><i>1</i><div><b>O copo manda nas medidas.</b> Escolhe-se primeiro o copo de inox e a camisa é desenhada à volta dele, com 0,4 a 0,6 mm de folga. Nunca ao contrário.</div></div>
+      <div class="rule"><i>2</i><div><b>Parede dupla no inox.</b> Isola o calor da bebida e protege o plástico. Com parede simples o PLA amolece com o tempo junto à parede. Em alternativa, o corpo imprime-se em PETG.</div></div>
+      <div class="rule"><i>3</i><div><b>Corpo numa cor, relevo noutra peça.</b> O corpo com pega imprime numa só cor, sem trocas de filamento. A placa do emblema, multicolor, imprime à parte e encaixa numa reentrância. Isto corta o desperdício do AMS e o tempo de impressão.</div></div>
+      <div class="rule"><i>4</i><div><b>Ficheiro de trabalho em 3MF.</b> Modelação em Blender ou Fusion 360, cores pintadas no Bambu Studio, perfis de impressão guardados no mesmo ficheiro. STL só como cópia de segurança.</div></div>
+      <div class="rule"><i>5</i><div><b>Lavagem à mão e copo amovível.</b> Fica escrito no cartão que acompanha a caneca. Sem máquina de lavar, sem micro-ondas.</div></div>
+      <div class="rule"><i>6</i><div><b>Teste antes de vender.</b> Dez enchimentos com água a ferver e uma semana de uso diário em casa. Só depois entra no catálogo.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="ch" id="numeros">
+  <div class="wrap">
+    <div class="ch-head">
+      <span class="eyebrow"><span class="num">04</span> Números</span>
+      <h2>Quanto custa, quanto se cobra, quanto se produz</h2>
+      <p class="lead">Estimativas para confirmar com as primeiras impressões reais. O custo do copo depende do fornecedor e da quantidade mínima de encomenda.</p>
+    </div>
+    <table>
+      <tr><th class="l">Por unidade</th><th>Caneca</th><th>Porta-chaves</th><th>Peça de secretária</th></tr>
+      <tr><td class="l">Filamento, com desperdício do AMS</td><td>3 a 4 €</td><td>0,30 €</td><td>2 a 3 €</td></tr>
+      <tr><td class="l">Copo de inox de parede dupla</td><td>3 a 4 €</td><td>0</td><td>0</td></tr>
+      <tr><td class="l">Embalagem e cartão</td><td>1,50 €</td><td>0,30 €</td><td>1 €</td></tr>
+      <tr><td class="l">Eletricidade e impressões falhadas</td><td>1 €</td><td>0,10 €</td><td>0,70 €</td></tr>
+      <tr class="total"><td class="l">Custo total</td><td>9 a 11 €</td><td>0,70 €</td><td>4 a 5 €</td></tr>
+      <tr><td class="l">Tempo de impressão</td><td>5 a 7 h</td><td>20 a 30 min</td><td>3 a 5 h</td></tr>
+      <tr><td class="l">Tempo de mão de obra</td><td>20 min</td><td>3 min</td><td>10 min</td></tr>
+      <tr class="price"><td class="l">Preço de venda</td><td>29,90 €</td><td>7,90 €</td><td>24,90 a 34,90 €</td></tr>
+      <tr><td class="l">Margem bruta</td><td>19 a 21 €</td><td>7,20 €</td><td>20 a 30 €</td></tr>
+    </table>
+    <p class="note" style="margin:10px 0 28px">Portes em Portugal entre 4 e 6 €, cobrados à parte ou oferecidos acima de 40 €. Para a Europa entre 12 e 20 €, só na fase 3.</p>
+
+    <div class="grid g2">
+      <div class="card">
+        <h3>Capacidade com uma impressora</h3>
+        <ul>
+          <li>2 a 3 canecas por dia, ou dezenas de porta-chaves</li>
+          <li>Cerca de 50 a 60 canecas por mês se só se imprimirem canecas</li>
+          <li>Teto de faturação de 1.500 a 2.000 € por mês só em canecas</li>
+          <li>Quando a fila de encomendas passar uma semana, a segunda impressora paga-se em semanas</li>
+        </ul>
+      </div>
+      <div class="card gold">
+        <h3>Investimento de arranque</h3>
+        <table style="border:0">
+          <tr><td class="l" style="padding-left:0">Filamento, 4 cores, 2 rolos cada</td><td>150 a 180 €</td></tr>
+          <tr><td class="l" style="padding-left:0">50 copos de inox</td><td>150 a 200 €</td></tr>
+          <tr><td class="l" style="padding-left:0">Embalagem para 100 envios</td><td>80 a 120 €</td></tr>
+          <tr><td class="l" style="padding-left:0">Modelação dos 3 produtos, se encomendada</td><td>0 a 200 €</td></tr>
+          <tr><td class="l" style="padding-left:0">Domínio .pt e alojamento do site-catálogo</td><td>15 a 60 €/ano</td></tr>
+          <tr class="total"><td class="l" style="padding-left:0">Total, sem impressora</td><td>400 a 700 €</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:20px"><b>Ponto de equilíbrio.</b> Com margem de 20 € por caneca, o investimento de arranque recupera-se entre a 20.ª e a 35.ª caneca vendida. É a meta das primeiras seis semanas.</div>
+  </div>
+</section>
+
+<section class="ch" id="conteudo">
+  <div class="wrap">
+    <div class="ch-head">
+      <span class="eyebrow"><span class="num">05</span> Conteúdo</span>
+      <h2>Mostrar como se faz vende mais do que dar notícias</h2>
+      <p class="lead">Vídeos curtos de bastidores no Instagram e no TikTok. Notícias do clube só em dia de jogo, e sempre com o produto por perto.</p>
+    </div>
+    <table>
+      <tr><th class="l">Pilar</th><th class="l">O que é</th><th>Ritmo</th></tr>
+      <tr><td class="l"><b>Bastidores</b></td><td class="l">Impressão em timelapse, placa a encaixar, copo a entrar, embalagem a fechar, encomendas a sair.</td><td>2 por semana</td></tr>
+      <tr><td class="l"><b>Produto</b></td><td class="l">Fotografia e vídeo do produto acabado, pormenores do relevo, variantes e lançamentos.</td><td>1 a 2 por semana</td></tr>
+      <tr><td class="l"><b>Comunidade</b></td><td class="l">Sondagens, "qual queres ver a seguir", clientes a receber, respostas a comentários em vídeo.</td><td>1 por semana + Stories</td></tr>
+      <tr><td class="l"><b>Dia de jogo</b></td><td class="l">Um post de antevisão ou rescaldo com a caneca em cena. Sem reportar notícias todos os dias.</td><td>Só em dia de jogo</td></tr>
+    </table>
+    <div class="grid g3" style="margin-top:20px">
+      <div class="card"><h3>Instagram</h3><p>Perfil da marca e montra. Reels dos bastidores, Stories diários durante a produção, destaques com produtos, envios e perguntas frequentes.</p></div>
+      <div class="card"><h3>TikTok</h3><p>Onde a impressão 3D tem mais alcance orgânico. Os mesmos vídeos, publicados primeiro aqui, com legenda a dizer onde comprar.</p></div>
+      <div class="card"><h3>Bio e contacto</h3><p>Marca independente · Paixão em cada detalhe · Produtos para benfiquistas · Feito em Portugal · Encomenda por mensagem ou WhatsApp · Catálogo no site.</p></div>
+    </div>
+
+    <h3 style="margin:36px 0 14px;font-size:17px">Como se fecha uma venda por mensagem</h3>
+    <div class="rules">
+      <div class="rule"><i>1</i><div><b>O cliente vê o produto</b> num Reel, num Story ou no site-catálogo. Cada produto no site tem um botão de WhatsApp e outro de Instagram com a mensagem já escrita: "Olá, quero a caneca Bancada Encarnada".</div></div>
+      <div class="rule"><i>2</i><div><b>Resposta em menos de uma hora</b> em horário definido, com mensagem modelo: preço, portes, prazo de 3 a 5 dias úteis e as duas opções de pagamento.</div></div>
+      <div class="rule"><i>3</i><div><b>Pagamento por MB Way ou transferência</b> antes de imprimir. O cliente envia o comprovativo e a morada, nós respondemos com a fatura.</div></div>
+      <div class="rule"><i>4</i><div><b>Impressão, embalagem e envio</b> com registo CTT. O cliente recebe o código de seguimento na mesma conversa.</div></div>
+      <div class="rule"><i>5</i><div><b>Uma semana depois</b>, uma mensagem a perguntar se chegou bem e a pedir uma fotografia. Essas fotografias são o conteúdo da semana seguinte.</div></div>
+    </div>
+    <div class="callout" style="margin-top:18px"><b>O site-catálogo.</b> Uma página por produto com fotografias, preço, medidas e cuidados, mais os dois botões de contacto. Sem carrinho. Tem ainda as páginas obrigatórias: termos de venda, devoluções e livro de reclamações. Passa a loja com pagamento só se as mensagens deixarem de dar vazão.</div>
+  </div>
+</section>
+
+<section class="ch" id="plano">
+  <div class="wrap">
+    <div class="ch-head">
+      <span class="eyebrow"><span class="num">06</span> Plano</span>
+      <h2>Os primeiros 90 dias</h2>
+      <p class="lead">Primeiro provar que há quem compre. Depois abrir a loja. Só no fim crescer para fora de Portugal.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="n">01</div><div>
+        <h3>Dias 1 a 30 · Validar</h3>
+        <ul>
+          <li>Registar o utilizador nas redes e o domínio .pt</li>
+          <li>Escolher o copo e encomendar a primeira caixa</li>
+          <li>Modelar e imprimir os 3 produtos até estarem bons de fotografar</li>
+          <li>Medir tempo, gramas e desperdício reais e corrigir a tabela de custos</li>
+          <li>Logótipo, monograma e paleta fechados</li>
+          <li>3 a 4 vídeos de bastidores por semana</li>
+          <li>WhatsApp Business criado, com catálogo, horário e respostas rápidas</li>
+          <li>Primeiras vendas por Instagram e WhatsApp, pagamento por MB Way</li>
+        </ul>
+        <span class="goal">Meta: 15 a 20 vendas</span>
+      </div></div>
+      <div class="step"><div class="n">02</div><div>
+        <h3>Dias 31 a 60 · Vender</h3>
+        <ul>
+          <li>Atividade aberta nas Finanças e fatura em cada venda</li>
+          <li>Site-catálogo com os 3 produtos e botões de WhatsApp e Instagram em cada um</li>
+          <li>Embalagem com etiqueta própria e cartão de cuidados</li>
+          <li>Envios só em Portugal, prazo de 3 a 5 dias úteis</li>
+          <li>Vídeos de clientes a receber e a usar</li>
+        </ul>
+        <span class="goal">Meta: 40 a 60 vendas no mês</span>
+      </div></div>
+      <div class="step"><div class="n">03</div><div>
+        <h3>Dias 61 a 90 · Crescer</h3>
+        <ul>
+          <li>Segunda coleção ou variantes com nome do cliente</li>
+          <li>Teste de envios para França, Suíça e Luxemburgo com embalagem reforçada</li>
+          <li>Parceria com 2 ou 3 criadores benfiquistas pequenos, paga em produto</li>
+          <li>Primeiros anúncios com os vídeos que já funcionaram sem pagar</li>
+          <li>Decidir a segunda impressora pela fila de encomendas</li>
+          <li>Avaliar pagamento no site só se as mensagens deixarem de dar vazão</li>
+        </ul>
+        <span class="goal">Meta: 80 a 100 vendas no mês e primeiras encomendas internacionais</span>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="ch" id="operacao">
+  <div class="wrap">
+    <div class="ch-head">
+      <span class="eyebrow"><span class="num">07</span> Operação</span>
+      <h2>O que um negócio a sério precisa de ter</h2>
+      <p class="lead">Nada disto é opcional a partir da primeira venda, mesmo sendo por mensagem.</p>
+    </div>
+    <div class="grid g2">
+      <div class="card">
+        <h3>Obrigações</h3>
+        <ul>
+          <li>Atividade aberta nas Finanças, ou empresa, e fatura em cada venda</li>
+          <li>Livro de reclamações eletrónico no site-catálogo</li>
+          <li>Política de devoluções de 14 dias e termos de venda no site e na mensagem de confirmação</li>
+          <li>Prazo de entrega claro, porque é produção por encomenda</li>
+          <li>Dados da marca no rodapé do site e na bio</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Logística e mensagens</h3>
+        <ul>
+          <li>Envio por CTT com registo, caixa testada em queda antes do primeiro envio</li>
+          <li>Peças de desgaste da impressora e um rolo extra de cada cor em stock</li>
+          <li>Stock de 10 copos e 20 embalagens acima das encomendas em fila</li>
+          <li>Etiquetas do WhatsApp Business por estado: pedido, pago, a imprimir, enviado</li>
+          <li>Folha de encomendas partilhada entre os dois sócios, para nada se perder nas conversas</li>
+        </ul>
+      </div>
+    </div>
+    <h3 style="margin:36px 0 14px;font-size:17px">Riscos e como os travamos</h3>
+    <table>
+      <tr><th class="l">Risco</th><th class="l">Resposta</th></tr>
+      <tr><td class="l">Uma só impressora avaria</td><td class="l">Peças de desgaste em casa, fila de encomendas nunca acima de uma semana, segunda máquina assim que o teto se aproxima.</td></tr>
+      <tr><td class="l">Caneca parte no correio</td><td class="l">Caixa com separador e teste de queda. Copo e camisa embalados separados.</td></tr>
+      <tr><td class="l">Preço não aceite</td><td class="l">As vendas por mensagem do primeiro mês dizem-nos antes de investir no site. Ajustar relevo ou copo antes de baixar o preço.</td></tr>
+      <tr><td class="l">Mensagens sem resposta a tempo</td><td class="l">Horário de resposta definido entre os sócios, respostas rápidas guardadas, mensagem de ausência fora de horas. Um pedido sem resposta num dia é uma venda perdida.</td></tr>
+      <tr><td class="l">Portes internacionais comem a margem</td><td class="l">Só vender fora depois de a margem em Portugal estar confirmada, e com portes cobrados ao cliente.</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="ch" id="decisoes">
+  <div class="wrap">
+    <div class="ch-head">
+      <span class="eyebrow"><span class="num">08</span> Próximos passos</span>
+      <h2>O que decidir entre sócios esta semana</h2>
+    </div>
+    <div class="grid g2">
+      <div class="card"><h3>Decisões</h3><ul>
+        <li>Quem faz a modelação 3D e quem responde às mensagens e trata do site</li>
+        <li>Fornecedor e modelo do copo de inox</li>
+        <li>Qual é a peça de secretária da primeira coleção</li>
+        <li>Quanto investe cada um no arranque e como se dividem as vendas</li>
+      </ul></div>
+      <div class="card gold"><h3>Primeiras tarefas</h3><ul>
+        <li>Confirmar o nome no Instagram e no TikTok e registar o domínio</li>
+        <li>Criar o WhatsApp Business com catálogo e respostas rápidas</li>
+        <li>Encomendar o copo de teste e o filamento</li>
+        <li>Primeira impressão de teste da camisa da caneca</li>
+        <li>Primeiro vídeo de bastidores, mesmo antes de o produto estar perfeito</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="mono" style="width:48px;height:48px;font-size:18px">BE</span>
+    <b>Bancada Encarnada</b>
+    <span>Plano de marca e loja · Novembro 2026 · Marca independente, sem ligação ao Sport Lisboa e Benfica.</span>
+    <span>Paixão em cada detalhe.</span>
+  </div>
+</footer>
+</body>
+</html>
