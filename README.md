@@ -1,22 +1,36 @@
 # Bancada Encarnada
 
-Site da Bancada Encarnada: comunidade independente de benfiquistas e loja de peças originais feitas em Portugal. Marca independente, sem ligação ao Sport Lisboa e Benfica.
+Site da Bancada Encarnada: comunidade independente de benfiquistas e loja de peças originais feitas em Portugal. Marca independente, sem ligação oficial ao Sport Lisboa e Benfica.
 
-## Como funciona
+Publicado em https://nunotavares062.github.io/bancada-encarnada/ a partir da pasta `site/`, por GitHub Pages, em cada push para `main`.
 
-- `src/home.html` é o template da homepage. **Não editar `site/index.html` à mão.**
-- `site/data/produtos.json`, `semana.json` e `mural.json` são os dados: produtos, pergunta da semana, mural.
-- `site/config.js` tem os contactos, portes, prazos, dados fiscais e as ligações ao Supabase e ao Brevo. Ver `LIGAR-SERVICOS.md`.
-- `build.py` gera `site/index.html`, `site/loja/index.html` e `site/loja/produto/*.html`, converte as imagens para WebP e cria as imagens Open Graph.
+## Estrutura
 
-```bash
-pip install pillow
-python build.py
+```
+site/
+  index.html            homepage
+  loja.html             catálogo (filtros por categoria, ordenação)
+  produto.html?p=slug   ficha de produto, dinâmica a partir de products.js
+  comunidade.html       esta semana, sondagem, mural, histórias, clube
+  sobre.html            história, missão, produção
+  contactos.html        contactos e perguntas frequentes
+  termos.html · devolucoes.html · privacidade.html
+  404.html · sitemap.xml · robots.txt
+  assets/css/styles.css
+  assets/js/config.js   contactos, portes, prazos, dados fiscais, Supabase, Brevo
+  assets/js/products.js categorias e produtos
+  assets/js/data.js     pergunta da semana, mural, histórias
+  assets/js/main.js     header, footer, ligações, clube, sondagem, mural
+  assets/js/shop.js     catálogo e ficha de produto
+  assets/images/ · assets/video/
 ```
 
-## Publicação
+## Como editar
 
-Cada push para `main` corre o build no GitHub Actions e publica a pasta `site` no GitHub Pages. Antes de publicar a sério: `preview: false` em `site/config.js` e dados fiscais preenchidos.
+- **Contactos e dados fiscais:** `site/assets/js/config.js`. Enquanto `preview: true`, os campos por preencher aparecem assinalados e os botões de WhatsApp ficam inativos.
+- **Produtos:** `site/assets/js/products.js`. Copia um bloco, muda o `slug` e os campos. Fotografias em `site/assets/images/` com o nome base; depois corre `python tools/images.py` para gerar os WebP.
+- **Pergunta da semana, mural, histórias:** `site/assets/js/data.js`.
+- **Votos partilhados e Clube com dupla confirmação:** ver `LIGAR-SERVICOS.md`.
 
 ## Pré-visualizar em local
 

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Comunidade · Bancada Encarnada</title>
+<meta name="description" content="A bancada digital dos benfiquistas: a pergunta da semana, o Mural Encarnado, histórias de adeptos e o Clube da Bancada. Feita por adeptos, para adeptos.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="canonical" href="https://nunotavares062.github.io/bancada-encarnada/comunidade.html">
+<meta property="og:type" content="website"><meta property="og:locale" content="pt_PT"><meta property="og:site_name" content="Bancada Encarnada">
+<meta property="og:title" content="Comunidade · Bancada Encarnada">
+<meta property="og:description" content="A pergunta da semana, o mural, as histórias de adeptos e o Clube da Bancada.">
+<meta property="og:url" content="https://nunotavares062.github.io/bancada-encarnada/comunidade.html">
+<meta property="og:image" content="https://nunotavares062.github.io/bancada-encarnada/assets/images/og-home.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<div id="site-header"></div>
+<main id="main">
+
+  <section class="hero" aria-labelledby="h1">
+    <div class="wrap in">
+      <div class="copy">
+        <span class="kicker">A comunidade</span>
+        <h1 id="h1">Não é preciso estar na Luz para estar <em>na bancada.</em></h1>
+        <p class="lead">Há benfiquistas em todo o lado, e nem todos cabem no estádio. No sofá de casa, no café da terra, no grupo de amigos, a milhares de quilómetros. A paixão é a mesma. Faltava um sítio para a juntar.</p>
+        <div class="acts"><a class="btn btn-red btn-lg" href="#semana">Responder à pergunta da semana</a><a class="btn btn-line btn-lg" href="#mural">Enviar uma fotografia</a></div>
+      </div>
+      <figure class="media rv">
+        <picture><source type="image/webp" srcset="assets/images/seats-1-800.webp 800w, assets/images/seats-1-1200.webp 1200w, assets/images/seats-1-1600.webp 1600w" sizes="(min-width: 960px) 50vw, 100vw"><img src="assets/images/seats-1.jpg" width="1067" height="1600" alt="Filas de cadeiras encarnadas vazias numa bancada" fetchpriority="high"></picture>
+        <figcaption class="cap"><b>Cada lugar vazio é alguém<br>que vê o jogo noutro sítio.</b></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec" aria-label="O que fazemos aqui">
+    <div class="wrap">
+      <div class="pillars rv">
+        <div class="pillar"><span class="n">01</span><h3>Partilhar</h3><p>Histórias, fotografias e memórias de quem vive o clube. O mural é da comunidade e só entra o que tu autorizares.</p></div>
+        <div class="pillar"><span class="n">02</span><h3>Decidir</h3><p>As próximas peças escolhem-se em conjunto. Cada semana há uma pergunta à bancada e o resultado manda no que fazemos a seguir.</p></div>
+        <div class="pillar"><span class="n">03</span><h3>Pertencer</h3><p>Somos adeptos, não somos o clube. Se és benfiquista, já tens lugar marcado, estejas em Lisboa, em Vouzela ou em Paris.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec ivory" id="semana" aria-labelledby="h-semana">
+    <div class="wrap">
+      <div class="sec-head split rv">
+        <div><span class="kicker">Esta semana na Bancada · <span id="semTitulo"></span></span><h2 id="h-semana" style="margin-top:14px">Aqui a bancada <span class="it red">também decide.</span></h2></div>
+        <p class="lead">Uma pergunta por semana, uma memória em destaque e a novidade que vem a seguir. Atualizamos todas as segundas-feiras.</p>
+      </div>
+      <div class="semana-grid">
+        <div class="sem rv" id="poll" aria-labelledby="h-poll">
+          <span class="k">Pergunta da semana</span>
+          <span class="demo" id="pollDemo" title="Esta sondagem ainda não está ligada a um servidor">Demonstração local</span>
+          <h3 id="h-poll" class="sr">Sondagem</h3>
+          <p class="q" id="pollQ"></p>
+          <div class="opts" role="group" aria-label="Opções de resposta" id="opts"></div>
+          <p class="poll-status" id="pollStatus" role="status" aria-live="polite"></p>
+          <button class="poll-reset" id="pollReset" type="button" hidden>Apagar o meu voto neste dispositivo</button>
+        </div>
+        <div class="sem empty-card rv">
+          <span class="k">A memória da semana</span>
+          <h3>Ainda está por escrever.</h3>
+          <p>A primeira memória em destaque vai ser de alguém da bancada. Pode ser a tua: conta-nos lá em baixo.</p>
+          <a class="arrow-link" href="#mural">Partilhar uma memória <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="sem rv" id="semNovidade">
+          <span class="k">Novidade</span>
+          <h3>O que vem a seguir</h3>
+          <p></p>
+          <a class="arrow-link" href="#">Ver <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="mural" aria-labelledby="h-mural">
+    <div class="wrap">
+      <div class="sec-head split rv">
+        <div><span class="kicker">Mural Encarnado</span><h2 id="h-mural" style="margin-top:14px">As fotografias <span class="it red">são vossas.</span></h2></div>
+        <p class="lead">O mural abre com as primeiras fotografias que a bancada enviar. Cachecóis de família, a caneca na secretária, a televisão do café, a bandeira na varanda do outro lado do mundo.</p>
+      </div>
+      <div class="mural-invite rv" id="muralEmpty">
+        <div>
+          <h3>O primeiro lugar do mural é teu.</h3>
+          <p style="margin-top:10px">Envia uma fotografia tua com uma frase sobre o momento. Vemos cada uma antes de entrar e só publicamos com a tua autorização e o nome que escolheres.</p>
+          <div class="acts" style="margin-top:18px"><a class="btn btn-white" data-wa data-msg="Olá! Quero enviar uma fotografia para o Mural Encarnado." href="#">Enviar pelo WhatsApp</a><a class="btn btn-line" style="border-color:rgba(255,255,255,.4);color:#fff" data-ig href="#">Enviar pelo Instagram</a></div>
+        </div>
+        <form class="form" onsubmit="return false">
+          <div class="field"><label for="memTxt">Ou escreve uma memória</label><textarea id="memTxt" maxlength="600" placeholder="Lembro-me de..."></textarea></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><span class="count" id="memCount">0 / 600</span><a class="btn btn-wa btn-sm" id="memWa" data-wa data-msg="Olá! Quero partilhar uma memória benfiquista para o mural: " href="#">Enviar por WhatsApp</a></div>
+        </form>
+      </div>
+      <div class="mural-grid rv" id="muralGrid" hidden aria-label="Fotografias da bancada"></div>
+      <div class="how rv">
+        <div><b>1 · Envias</b>Uma fotografia tua, por WhatsApp ou Instagram, com uma frase sobre o momento.</div>
+        <div><b>2 · Autorizas</b>Confirmas por mensagem que és o autor e que podemos publicar com o teu nome, as iniciais ou sem nome.</div>
+        <div><b>3 · Publicamos</b>Vemos cada fotografia antes de entrar no mural. Sem rostos de menores sem autorização dos pais, sem imagens de terceiros.</div>
+      </div>
+      <p class="note" style="margin-top:16px;max-width:70ch">Podes pedir a remoção da tua fotografia a qualquer momento, por mensagem. Não usamos as fotografias do mural em publicidade sem te perguntar antes.</p>
+    </div>
+  </section>
+
+  <section class="sec ivory" id="historias" aria-labelledby="h-hist">
+    <div class="wrap">
+      <div class="sec-head split rv">
+        <div><span class="kicker">Histórias de adeptos</span><h2 id="h-hist" style="margin-top:14px">O primeiro jogo, o golo que fez a casa abanar, <span class="it red">a pessoa que te levou pela mão.</span></h2></div>
+        <p class="lead">Publicamos aqui as histórias que a bancada nos envia e autoriza, com o nome ou as iniciais do autor. Nenhuma é inventada por nós.</p>
+      </div>
+      <div class="stories" id="historias"></div>
+      <div class="empty rv" id="historiasEmpty">Ainda não há histórias publicadas. A primeira pode ser a tua: escreve-a no mural, acima, e envia-nos.</div>
+    </div>
+  </section>
+
+  <section class="sec tight" id="clube" aria-labelledby="h-clube">
+    <div class="wrap">
+      <div class="clube rv">
+        <div>
+          <span class="kicker">Clube da Bancada</span>
+          <h2 id="h-clube" style="margin-top:14px">Marca o teu lugar. <span class="it">É gratuito.</span></h2>
+          <p class="lead" style="margin-top:14px">A lista de quem quer estar por dentro: participa na escolha das peças, sabe dos lançamentos primeiro e recebe as novidades da comunidade.</p>
+        </div>
+        <form class="form clube-form" novalidate>
+          <h3>Entrar no Clube</h3>
+          <div class="field"><label for="fNome">Nome</label><input id="fNome" name="nome" type="text" autocomplete="name" required minlength="2"></div>
+          <div class="field"><label for="fEmail">Email</label><input id="fEmail" name="email" type="email" autocomplete="email" required inputmode="email"></div>
+          <div class="hp" aria-hidden="true"><label>Não preencher<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+          <label class="check"><input type="checkbox" name="consent" required><span>Autorizo a Bancada Encarnada a enviar-me novidades por email. Vou receber um email para confirmar e posso cancelar em qualquer altura. Li a <a href="privacidade.html">política de privacidade</a>.</span></label>
+          <div class="status" role="status" aria-live="polite"></div>
+          <button class="btn btn-red" type="submit">Marcar o meu lugar</button>
+          <small>A adesão só fica completa depois de confirmares o email.</small>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+<div id="site-footer"></div>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

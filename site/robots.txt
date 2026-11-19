@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /bancada-encarnada/assets/js/
+
+Sitemap: https://nunotavares062.github.io/bancada-encarnada/sitemap.xml
