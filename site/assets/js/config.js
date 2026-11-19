@@ -1,8 +1,8 @@
 /* =====================================================================
    BANCADA ENCARNADA · CONFIGURAÇÃO CENTRAL
-   Tudo o que muda de negócio para negócio está aqui. Os valores entre
-   [parênteses retos] estão POR PREENCHER: enquanto `preview` for true
-   aparecem assinalados no site e os botões de WhatsApp ficam inativos.
+   Contactos só por email e redes sociais. Os valores entre [parênteses
+   retos] ou vazios estão POR PREENCHER: enquanto `preview` for true
+   aparecem assinalados no site e os botões de email ficam inativos.
    ===================================================================== */
 window.BE_CONFIG = {
   preview: true,
@@ -16,12 +16,11 @@ window.BE_CONFIG = {
   },
 
   contacto: {
-    whatsapp: "",                         // [POR PREENCHER] número com indicativo, só dígitos, ex. 351912345678
+    email: "",                            // [POR PREENCHER] email da loja: recebe encomendas, fotografias do mural e contactos
     instagram: "bancadaencarnada",        // utilizador sem @
     tiktok: "bancadaencarnada",
-    email: "",                            // [POR PREENCHER]
-    horario: "das 9h às 21h, todos os dias",
-    tempoResposta: "menos de uma hora"
+    horario: "dias úteis, das 9h às 19h",
+    tempoResposta: "24 horas úteis"
   },
 
   comercial: {
@@ -43,9 +42,14 @@ window.BE_CONFIG = {
     livroReclamacoes: "https://www.livroreclamacoes.pt/"
   },
 
-  /* Sondagem partilhada (Supabase). Vazio = demonstração local, identificada no site. Ver LIGAR-SERVICOS.md */
+  /* Pedidos de encomenda do carrinho. Vazio = o pedido segue por email
+     (abre o programa de email do cliente com o pedido já escrito).
+     Com um endpoint (ex. Formspree) o pedido é enviado pelo site. Ver LIGAR-SERVICOS.md */
+  encomendas: { endpoint: "" },
+
+  /* Sondagem partilhada (Supabase). Vazio = demonstração local, identificada no site. */
   votos: { url: "", anonKey: "", tabela: "votos" },
 
-  /* Clube da Bancada (Brevo através de um proxy teu). Vazio = encaminha para o WhatsApp ou email. Ver LIGAR-SERVICOS.md */
+  /* Clube da Bancada (Brevo através de um proxy). Vazio = adesão por email. */
   newsletter: { provider: "brevo", endpoint: "" }
 };

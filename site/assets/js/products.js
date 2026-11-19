@@ -5,6 +5,9 @@
    o nome base (ex. "caneca" -> caneca.jpg + caneca-800/1200/1600.webp).
    estado: "disponivel" | "preparacao" | "esgotado"
    preco: número em euros ou null (em preparação)
+   persMax: máximo de caracteres da personalização
+   promo: { qtd, preco, texto } desconto automático no carrinho
+   portesIncluidos: true = a encomenda com esta peça não paga portes
    ===================================================================== */
 window.BE_PRODUCTS = {
   categorias: [
@@ -34,6 +37,7 @@ window.BE_PRODUCTS = {
       medidas: "11,5 cm de altura · 350 ml",
       variantes: [{ nome: "Cor da pega", opcoes: ["Encarnado", "Carvão"] }],
       personalizacao: "Nome ou número gravado na base, sem custo extra.",
+      persMax: 12,
       prazo: "3d",
       cuidados: ["Copo à mão ou na máquina", "Camisa só com pano húmido", "Não vai ao micro-ondas"],
       relacionados: ["porta-chaves-1904", "pack-bancada", "bancada-miniatura"]
@@ -56,6 +60,8 @@ window.BE_PRODUCTS = {
       medidas: "5 × 4,2 cm · 4 mm de espessura",
       variantes: [{ nome: "Verso", opcoes: ["Liso", "Com nome", "Com número"] }],
       personalizacao: "Nome ou número no verso, até 10 caracteres, sem custo extra.",
+      persMax: 10,
+      promo: { qtd: 3, preco: 19.90, texto: "3 por 19,90 €" },
       prazo: "3d",
       cuidados: ["Não deixar ao sol dentro do carro no verão"],
       relacionados: ["caneca-bancada", "pack-bancada"]
@@ -78,6 +84,7 @@ window.BE_PRODUCTS = {
       medidas: "14 × 9 × 7 cm",
       variantes: [{ nome: "Placa", opcoes: ["Nome", "Número de sócio", "Sem gravação"] }],
       personalizacao: "Nome ou número de sócio gravado na placa, até 18 caracteres.",
+      persMax: 18,
       prazo: "3d",
       cuidados: ["Limpar com pincel macio", "Não expor ao sol direto"],
       relacionados: ["caneca-bancada", "porta-chaves-1904"]
@@ -101,6 +108,8 @@ window.BE_PRODUCTS = {
       medidas: "Caixa 16 × 14 × 13 cm",
       variantes: [{ nome: "Cor da pega da caneca", opcoes: ["Encarnado", "Carvão"] }],
       personalizacao: "Nome ou número no verso do porta-chaves e na base da caneca, sem custo.",
+      persMax: 12,
+      portesIncluidos: true,
       prazo: "3d",
       cuidados: ["Ver cada peça"],
       relacionados: ["bancada-miniatura"]

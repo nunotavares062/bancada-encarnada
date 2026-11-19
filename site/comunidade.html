@@ -87,21 +87,22 @@
       <div class="mural-invite rv" id="muralEmpty">
         <div>
           <h3>O primeiro lugar do mural é teu.</h3>
-          <p style="margin-top:10px">Envia uma fotografia tua com uma frase sobre o momento. Vemos cada uma antes de entrar e só publicamos com a tua autorização e o nome que escolheres.</p>
-          <div class="acts" style="margin-top:18px"><a class="btn btn-white" data-wa data-msg="Olá! Quero enviar uma fotografia para o Mural Encarnado." href="#">Enviar pelo WhatsApp</a><a class="btn btn-line" style="border-color:rgba(255,255,255,.4);color:#fff" data-ig href="#">Enviar pelo Instagram</a></div>
+          <p style="margin-top:10px">Envia-nos a tua fotografia por email, com uma frase sobre o momento e o nome ou as iniciais que queres ver publicados. Vemos cada uma antes de entrar e só publicamos com a tua autorização.</p>
+          <div class="acts" style="margin-top:18px"><a class="btn btn-white" data-mail data-subject="Fotografia para o Mural Encarnado" data-body="Olá!&#10;&#10;Segue em anexo a minha fotografia para o Mural Encarnado.&#10;&#10;Nome ou iniciais a publicar:&#10;Localidade:&#10;Frase sobre o momento:&#10;&#10;Confirmo que sou o autor da fotografia e autorizo a sua publicação no Mural Encarnado da Bancada Encarnada. Posso pedir a remoção a qualquer momento." href="#">Enviar fotografia por email</a></div>
+          <p class="note" style="margin-top:12px;color:rgba(255,255,255,.65)">Anexa a fotografia ao email, em JPG ou PNG, de preferência na vertical. O email já vai com os campos e a autorização para preencheres.</p>
         </div>
         <form class="form" onsubmit="return false">
           <div class="field"><label for="memTxt">Ou escreve uma memória</label><textarea id="memTxt" maxlength="600" placeholder="Lembro-me de..."></textarea></div>
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><span class="count" id="memCount">0 / 600</span><a class="btn btn-wa btn-sm" id="memWa" data-wa data-msg="Olá! Quero partilhar uma memória benfiquista para o mural: " href="#">Enviar por WhatsApp</a></div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><span class="count" id="memCount">0 / 600</span><a class="btn btn-white btn-sm" id="memMail" data-mail data-subject="Memória para o Mural Encarnado" href="#">Enviar por email</a></div>
         </form>
       </div>
       <div class="mural-grid rv" id="muralGrid" hidden aria-label="Fotografias da bancada"></div>
       <div class="how rv">
-        <div><b>1 · Envias</b>Uma fotografia tua, por WhatsApp ou Instagram, com uma frase sobre o momento.</div>
-        <div><b>2 · Autorizas</b>Confirmas por mensagem que és o autor e que podemos publicar com o teu nome, as iniciais ou sem nome.</div>
+        <div><b>1 · Envias por email</b>A fotografia ou a memória, com uma frase sobre o momento e o nome ou as iniciais a publicar.</div>
+        <div><b>2 · Autorizas</b>No mesmo email confirmas que és o autor e que podemos publicar. O texto da autorização já vai escrito.</div>
         <div><b>3 · Publicamos</b>Vemos cada fotografia antes de entrar no mural. Sem rostos de menores sem autorização dos pais, sem imagens de terceiros.</div>
       </div>
-      <p class="note" style="margin-top:16px;max-width:70ch">Podes pedir a remoção da tua fotografia a qualquer momento, por mensagem. Não usamos as fotografias do mural em publicidade sem te perguntar antes.</p>
+      <p class="note" style="margin-top:16px;max-width:70ch">Podes pedir a remoção da tua fotografia a qualquer momento, por email. Não usamos as fotografias do mural em publicidade sem te perguntar antes.</p>
     </div>
   </section>
 
@@ -112,7 +113,7 @@
         <p class="lead">Publicamos aqui as histórias que a bancada nos envia e autoriza, com o nome ou as iniciais do autor. Nenhuma é inventada por nós.</p>
       </div>
       <div class="stories" id="historias"></div>
-      <div class="empty rv" id="historiasEmpty">Ainda não há histórias publicadas. A primeira pode ser a tua: escreve-a no mural, acima, e envia-nos.</div>
+      <div class="empty rv" id="historiasEmpty">Ainda não há histórias publicadas. A primeira pode ser a tua: escreve-a no mural, acima, e envia-nos por email.</div>
     </div>
   </section>
 
@@ -144,5 +145,6 @@
 <script src="assets/js/products.js"></script>
 <script src="assets/js/data.js"></script>
 <script src="assets/js/main.js" defer></script>
+<script src="assets/js/cart.js" defer></script>
 </body>
 </html>

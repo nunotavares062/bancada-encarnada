@@ -9,8 +9,9 @@ Publicado em https://nunotavares062.github.io/bancada-encarnada/ a partir da pas
 ```
 site/
   index.html            homepage
-  loja.html             catálogo (filtros por categoria, ordenação)
-  produto.html?p=slug   ficha de produto, dinâmica a partir de products.js
+  loja.html             coleção (pesquisa, categorias, só disponíveis, ordenação)
+  produto.html?p=slug   ficha de produto: opções, personalização, quantidade, carrinho
+  encomenda.html        pedido de encomenda (contacto, entrega, pagamento, resumo)
   comunidade.html       esta semana, sondagem, mural, histórias, clube
   sobre.html            história, missão, produção
   contactos.html        contactos e perguntas frequentes
@@ -21,16 +22,18 @@ site/
   assets/js/products.js categorias e produtos
   assets/js/data.js     pergunta da semana, mural, histórias
   assets/js/main.js     header, footer, ligações, clube, sondagem, mural
-  assets/js/shop.js     catálogo e ficha de produto
+  assets/js/cart.js     carrinho lateral, descontos, portes e envio do pedido
+  assets/js/shop.js     coleção e ficha de produto
   assets/images/ · assets/video/
 ```
 
 ## Como editar
 
-- **Contactos e dados fiscais:** `site/assets/js/config.js`. Enquanto `preview: true`, os campos por preencher aparecem assinalados e os botões de WhatsApp ficam inativos.
+- **Contactos e dados fiscais:** `site/assets/js/config.js`. Contactos só por email e redes sociais. Enquanto `preview: true`, os campos por preencher aparecem assinalados e os botões de email ficam inativos.
 - **Produtos:** `site/assets/js/products.js`. Copia um bloco, muda o `slug` e os campos. Fotografias em `site/assets/images/` com o nome base; depois corre `python tools/images.py` para gerar os WebP.
 - **Pergunta da semana, mural, histórias:** `site/assets/js/data.js`.
-- **Votos partilhados e Clube com dupla confirmação:** ver `LIGAR-SERVICOS.md`.
+- **Encomendas:** o carrinho envia o pedido para `encomendas.endpoint` (Formspree) ou, sem ele, por email. Descontos (`promo`) e portes incluídos (`portesIncluidos`) definem-se em `products.js`.
+- **Votos partilhados, Clube com dupla confirmação e pedidos de encomenda:** ver `LIGAR-SERVICOS.md`.
 
 ## Pré-visualizar em local
 

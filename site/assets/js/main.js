@@ -1,6 +1,6 @@
 /* =====================================================================
    BANCADA ENCARNADA · comportamento partilhado por todas as páginas
-   Header, footer, ligações, Clube, sondagem, mural, helpers de produto.
+   Header, footer, ligações (email e redes), Clube, sondagem, mural.
    ===================================================================== */
 (function () {
   const CFG = window.BE_CONFIG || {}, DATA = window.BE_DATA || {}, PROD = window.BE_PRODUCTS || { categorias: [], produtos: [] };
@@ -11,61 +11,71 @@
   const eur = v => v == null ? "" : v.toFixed(2).replace(".", ",") + " €";
   const porPreencher = v => v == null || v === "" || (typeof v === "string" && /^\[.*\]$/.test(v));
   const page = (location.pathname.split("/").pop() || "index.html").toLowerCase();
-  const hasWA = /^\d{9,15}$/.test(C.whatsapp || "");
-  const wa = m => hasWA ? "https://wa.me/" + C.whatsapp + "?text=" + encodeURIComponent(m) : "#";
+  const hasMail = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(C.email || "");
+  const mailto = (subject, body) => hasMail ? "mailto:" + C.email + "?subject=" + encodeURIComponent(subject || "") + (body ? "&body=" + encodeURIComponent(body) : "") : "#";
 
-  /* imagens: WebP com fallback JPEG. Larguras disponíveis por nome. */
+  /* imagens: WebP com fallback JPEG */
   const SIZES = { "bancada-tall": [800] };
-  const picture = (name, alt, sizes = "(min-width: 900px) 50vw, 100vw", attrs = "", cls = "") => {
-    const ws = SIZES[name] || [800, 1200, 1600];
-    const ss = ws.map(w => `assets/images/${name}-${w}.webp ${w}w`).join(", ");
-    return `<picture${cls ? ` class="${cls}"` : ""}><source type="image/webp" srcset="${ss}" sizes="${sizes}"><img src="assets/images/${name}.jpg" alt="${esc(alt)}" ${attrs}></picture>`;
+  const picture = (name, alt, sizes = "(min-width: 900px) 50vw, 100vw", attrs = "") => {
+    const ss = (SIZES[name] || [800, 1200, 1600]).map(w => `assets/images/${name}-${w}.webp ${w}w`).join(", ");
+    return `<picture><source type="image/webp" srcset="${ss}" sizes="${sizes}"><img src="assets/images/${name}.jpg" alt="${esc(alt)}" ${attrs}></picture>`;
   };
 
+  /* ícones */
+  const I = {
+    ig: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>',
+    tt: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 3c.3 2.3 1.7 3.8 4 4v3.2c-1.5 0-2.9-.5-4-1.3v6.4a5.6 5.6 0 1 1-5.6-5.6c.3 0 .6 0 .9.1v3.3a2.4 2.4 0 1 0 1.5 2.2V3h3.2z"/></svg>',
+    mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>',
+    bag: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>',
+    search: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>'
+  };
+  window.BE_ICONS = I;
+
   /* ---------- header + footer ---------- */
-  const WA_ICON = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>';
   const NAV = [["index.html", "Início"], ["loja.html", "Loja"], ["comunidade.html", "Comunidade"], ["sobre.html", "Sobre nós"], ["contactos.html", "Contactos"]];
   const brand = () => `<a class="brand" href="index.html" aria-label="${esc(M.nome || "Bancada Encarnada")}, início"><span class="mono" aria-hidden="true">B</span><span>Bancada Encarnada<small>Cultura benfiquista</small></span></a>`;
   const headerHost = $("#site-header");
   if (headerHost) {
     headerHost.outerHTML = `<a class="skip" href="#main">Saltar para o conteúdo</a>
 ${CFG.preview ? '<div class="preview-note"><b>Pré-visualização.</b> Os campos assinalados ainda estão por preencher. Este aviso desaparece com <code>preview: false</code> em config.js.</div>' : ""}
+<div class="announce">Portes grátis em ${esc(COM.zona || "Portugal continental")} acima de ${eur(COM.portesGratisAcima)} <span aria-hidden="true">·</span> Feito em Portugal <span aria-hidden="true">·</span> ${esc(COM.devolucoesDias)} dias para devolver</div>
 <header class="site-header" id="siteHeader"><div class="in">
   ${brand()}
   <nav class="site-nav" aria-label="Páginas"><ul>${NAV.map(([h, l]) => `<li><a href="${h}"${h === page ? ' aria-current="page"' : ""}>${l}</a></li>`).join("")}</ul></nav>
-  <div class="right"><a class="btn btn-red btn-sm" href="loja.html">Explorar a loja</a><button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="drawer"><span></span></button></div>
+  <div class="right">
+    <a class="icon-btn" href="loja.html#procurar" aria-label="Procurar na loja">${I.search}</a>
+    <button class="icon-btn" id="cartBtn" type="button" aria-label="Abrir carrinho" aria-controls="cart" aria-expanded="false">${I.bag}<span class="cart-count" id="cartCount" hidden>0</span></button>
+    <button class="burger" id="burger" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="drawer"><span></span></button>
+  </div>
 </div></header>
 <div class="drawer" id="drawer" aria-hidden="true">
-  <div class="top">${brand()}<button class="close" id="drawerClose" aria-label="Fechar menu">✕</button></div>
+  <div class="top">${brand()}<button class="close" id="drawerClose" type="button" aria-label="Fechar menu">✕</button></div>
   <nav aria-label="Menu">${NAV.map(([h, l], i) => `<a href="${h}">${l}<small>0${i + 1}</small></a>`).join("")}</nav>
-  <div class="foot"><a class="btn btn-wa" data-wa data-msg="Olá! Vi o site da Bancada Encarnada e queria encomendar." href="#">${WA_ICON}WhatsApp</a><a class="btn btn-line" data-ig-profile href="#">Instagram</a></div>
+  <div class="foot"><a class="btn btn-coal" data-mail data-subject="Contacto pelo site" href="#">${I.mail}Email</a><a class="btn btn-line" data-ig-profile href="#">${I.ig}Instagram</a></div>
 </div>`;
   }
   const footerHost = $("#site-footer");
   if (footerHost) {
     footerHost.outerHTML = `<footer class="site-footer"><div class="wrap">
   <div class="cols">
-    <div>${brand()}<p class="tagline">${esc(M.slogan || "")}</p><p style="margin-top:12px;max-width:38ch">Comunidade independente de benfiquistas e loja de peças originais feitas em Portugal.</p></div>
+    <div>${brand()}<p class="tagline">${esc(M.slogan || "")}</p><p style="margin-top:12px;max-width:38ch">Comunidade independente de benfiquistas e loja de peças originais feitas em Portugal.</p>
+      <div class="socials"><a data-ig-profile href="#" aria-label="Instagram">${I.ig}</a><a data-tt href="#" aria-label="TikTok">${I.tt}</a><a data-mail data-subject="Contacto pelo site" href="#" aria-label="Email">${I.mail}</a></div></div>
     <div><h4>Comunidade</h4><ul><li><a href="comunidade.html">A bancada</a></li><li><a href="comunidade.html#semana">Esta semana</a></li><li><a href="comunidade.html#mural">Mural Encarnado</a></li><li><a href="comunidade.html#historias">Histórias de adeptos</a></li><li><a href="index.html#clube">Clube da Bancada</a></li></ul></div>
     <div><h4>Loja</h4><ul><li><a href="loja.html">Toda a coleção</a></li>${PROD.categorias.map(c => `<li><a href="loja.html?cat=${c.slug}">${esc(c.nome)}</a></li>`).join("")}<li><a href="sobre.html#producao">Como fazemos</a></li></ul></div>
-    <div><h4>Apoio e legal</h4><ul><li><a href="contactos.html">Contactos e perguntas</a></li><li><a href="termos.html">Termos de venda</a></li><li><a href="devolucoes.html">Trocas e devoluções</a></li><li><a href="privacidade.html">Política de privacidade</a></li><li><a href="${esc((CFG.legal || {}).livroReclamacoes || "https://www.livroreclamacoes.pt/")}" target="_blank" rel="noopener">Livro de Reclamações</a></li></ul></div>
+    <div><h4>Apoio</h4><ul><li><a href="contactos.html">Contactos</a></li><li><a href="contactos.html#faq">Perguntas frequentes</a></li><li><a href="termos.html">Termos de venda</a></li><li><a href="devolucoes.html">Trocas e devoluções</a></li><li><a href="privacidade.html">Política de privacidade</a></li><li><a href="${esc((CFG.legal || {}).livroReclamacoes || "https://www.livroreclamacoes.pt/")}" target="_blank" rel="noopener">Livro de Reclamações</a></li></ul></div>
   </div>
-  <div class="legal"><span>© ${new Date().getFullYear()} ${esc(M.nome || "Bancada Encarnada")}. ${esc(M.independente || "")}</span><span>Feito em Portugal.</span></div>
-</div></footer>
-<a class="float-wa" id="floatWa" data-wa data-msg="Olá! Vi o site da Bancada Encarnada e queria encomendar." href="#" aria-label="Falar no WhatsApp">${WA_ICON}</a>`;
+  <div class="legal"><span>© ${new Date().getFullYear()} ${esc(M.nome || "Bancada Encarnada")}. ${esc(M.independente || "")}</span><span>Pagamentos: ${esc((COM.pagamentos || []).join(" · "))}</span></div>
+</div></footer>`;
   }
 
   /* ---------- ligações e configuração ---------- */
   const ext = a => { a.target = "_blank"; a.rel = "noopener"; };
+  const off = (a, why) => { a.href = "#"; a.classList.add("is-off"); a.setAttribute("aria-disabled", "true"); a.title = why; if (!a.dataset.offBound) { a.dataset.offBound = "1"; a.addEventListener("click", e => { if (a.classList.contains("is-off")) e.preventDefault(); }); } };
   const wireLinks = (root = document) => {
-    $$("[data-wa]", root).forEach(a => {
-      if (hasWA) { a.href = wa(a.dataset.msg || "Olá!"); ext(a); a.classList.remove("is-off"); a.removeAttribute("aria-disabled"); }
-      else { a.href = "#"; a.classList.add("is-off"); a.setAttribute("aria-disabled", "true"); a.title = "Número de WhatsApp por preencher em config.js"; a.addEventListener("click", e => e.preventDefault()); }
-    });
+    $$("[data-mail]", root).forEach(a => { if (hasMail) { a.href = mailto(a.dataset.subject, a.dataset.body); a.classList.remove("is-off"); a.removeAttribute("aria-disabled"); } else off(a, "Email da loja por preencher em config.js"); });
     $$("[data-ig]", root).forEach(a => { a.href = "https://ig.me/m/" + C.instagram; ext(a); });
     $$("[data-ig-profile]", root).forEach(a => { a.href = "https://www.instagram.com/" + C.instagram + "/"; ext(a); });
     $$("[data-tt]", root).forEach(a => { a.href = "https://www.tiktok.com/@" + C.tiktok; ext(a); });
-    $$("[data-mail]", root).forEach(a => { if (porPreencher(C.email)) { a.href = "#"; a.classList.add("is-off"); a.title = "Email por preencher em config.js"; a.addEventListener("click", e => e.preventDefault()); } else a.href = "mailto:" + C.email; });
     const get = p => p.split(".").reduce((o, k) => (o == null ? o : o[k]), CFG);
     $$("[data-cfg]", root).forEach(el => {
       let v = get(el.dataset.cfg);
@@ -78,23 +88,19 @@ ${CFG.preview ? '<div class="preview-note"><b>Pré-visualização.</b> Os campos
     });
   };
   wireLinks();
-  if (CFG.preview && !hasWA) { const b = $(".site-header [data-wa], #floatWa"); }
 
   /* ---------- navegação ---------- */
-  const hdr = $("#siteHeader"), fw = $("#floatWa");
-  const onScroll = () => { if (hdr) hdr.classList.toggle("scrolled", scrollY > 10); if (fw) fw.classList.toggle("show", scrollY > 500); };
+  const hdr = $("#siteHeader");
+  const onScroll = () => { if (hdr) hdr.classList.toggle("scrolled", scrollY > 10); };
   addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  const trap = (box, e) => { const f = $$("a[href],button:not([disabled]),input,select,textarea", box).filter(x => x.offsetParent !== null); if (!f.length) return; const a = f[0], b = f[f.length - 1]; if (e.shiftKey && document.activeElement === a) { e.preventDefault(); b.focus(); } else if (!e.shiftKey && document.activeElement === b) { e.preventDefault(); a.focus(); } };
   const drawer = $("#drawer"), burger = $("#burger"), dclose = $("#drawerClose");
   if (drawer && burger) {
     let last = null;
     const set = s => { drawer.classList.toggle("show", s); drawer.setAttribute("aria-hidden", !s); burger.setAttribute("aria-expanded", s); document.body.style.overflow = s ? "hidden" : ""; if (s) { last = document.activeElement; dclose.focus(); } else if (last) last.focus(); };
     burger.addEventListener("click", () => set(true)); dclose.addEventListener("click", () => set(false));
     $$("a", drawer).forEach(a => a.addEventListener("click", () => set(false)));
-    addEventListener("keydown", e => {
-      if (!drawer.classList.contains("show")) return;
-      if (e.key === "Escape") set(false);
-      if (e.key === "Tab") { const f = $$("a,button", drawer), first = f[0], lastEl = f[f.length - 1]; if (e.shiftKey && document.activeElement === first) { e.preventDefault(); lastEl.focus(); } else if (!e.shiftKey && document.activeElement === lastEl) { e.preventDefault(); first.focus(); } }
-    });
+    addEventListener("keydown", e => { if (!drawer.classList.contains("show")) return; if (e.key === "Escape") set(false); if (e.key === "Tab") trap(drawer, e); });
   }
 
   /* ---------- reveal e vídeos ---------- */
@@ -107,20 +113,19 @@ ${CFG.preview ? '<div class="preview-note"><b>Pré-visualização.</b> Os campos
     $$("[data-lazyvideo]").forEach(v => vio.observe(v));
   }
 
-  /* ---------- produtos: cartão partilhado ---------- */
+  /* ---------- cartão de produto (estilo loja) ---------- */
   const prazoTxt = p => ({ "3d": COM.prazo3d, dtf: COM.prazoDTF, sublimacao: COM.prazoSublimacao }[p.prazo] || p.prazo || "");
   const card = p => {
     const prep = p.estado !== "disponivel";
-    const ph = p.imagens && p.imagens.length ? picture(p.imagens[0], p.nome, "(min-width: 1024px) 25vw, (min-width: 720px) 45vw, 100vw", 'loading="lazy" decoding="async" width="1200" height="1600"') : '<div class="ph-empty"><span>Fotografia quando houver amostra aprovada</span></div>';
-    const tag = p.etiqueta ? `<span class="tag ${prep ? "prep" : "red"}">${esc(p.etiqueta)}</span>` : "";
-    const price = prep ? '<div class="price prep">Preço a anunciar</div>' : `<div class="price">${eur(p.preco)}<small>${esc(p.precoNota || "")}</small></div>`;
-    return `<a class="pcard" href="produto.html?p=${p.slug}" data-cat="${p.categoria}" data-estado="${p.estado}" data-preco="${p.preco == null ? "" : p.preco}" data-data="${p.adicionado || ""}">
-  <div class="ph">${ph}${tag}</div>
-  <div class="body"><span class="tec">${esc(p.tecnica)}</span><h3>${esc(p.nome)}</h3><p>${esc(p.resumo)}</p>${price}<span class="estado${prep ? " prep" : ""}">${prep ? "Em preparação" : "Disponível por encomenda"}</span></div>
-</a>`;
+    const img = p.imagens && p.imagens.length
+      ? picture(p.imagens[0], p.nome, "(min-width: 1024px) 25vw, (min-width: 720px) 45vw, 50vw", 'loading="lazy" decoding="async" width="1200" height="1600"') + (p.imagens[1] ? `<img class="alt" src="assets/images/${p.imagens[1]}-800.webp" alt="" loading="lazy" aria-hidden="true">` : "")
+      : '<div class="ph-empty"><span>Fotografia em breve</span></div>';
+    const badge = prep ? '<span class="badge">Em breve</span>' : (p.etiqueta ? `<span class="badge red">${esc(p.etiqueta)}</span>` : "");
+    const price = prep ? '<span class="price muted">Preço a anunciar</span>' : `<span class="price">${eur(p.preco)}</span>`;
+    return `<a class="pcard${prep ? " is-prep" : ""}" href="produto.html?p=${p.slug}" data-cat="${p.categoria}" data-estado="${p.estado}"><div class="ph">${img}${badge}</div><div class="body"><h3>${esc(p.nome)}</h3>${price}</div></a>`;
   };
   const dest = $("#destaques");
-  if (dest) { dest.innerHTML = PROD.produtos.filter(p => p.destaque).slice(0, 4).map(card).join(""); }
+  if (dest) dest.innerHTML = PROD.produtos.filter(p => p.destaque).slice(0, 4).map(card).join("");
 
   /* ---------- Clube da Bancada ---------- */
   $$("form.clube-form").forEach(form => {
@@ -132,8 +137,9 @@ ${CFG.preview ? '<div class="preview-note"><b>Pré-visualização.</b> Os campos
       if (!form.checkValidity()) { form.reportValidity(); return; }
       const nome = form.nome.value.trim(), email = form.email.value.trim();
       if (!NL.endpoint) {
-        const msg = "Olá! Quero entrar no Clube da Bancada. Nome: " + nome + ". Email: " + email + ". Autorizo o envio de novidades por email.";
-        show("warn", "<b>O registo automático ainda não está ligado.</b> Para já, entra no Clube por mensagem: guardamos o teu contacto à mão e confirmamos contigo." + (hasWA ? `<br><a class="btn btn-wa btn-sm" data-wa data-msg="${esc(msg)}" href="#">Entrar pelo WhatsApp</a>` : (porPreencher(C.email) ? "<br><small>Os contactos ainda não estão preenchidos em config.js.</small>" : `<br><a class="btn btn-coal btn-sm" href="mailto:${esc(C.email)}?subject=Clube%20da%20Bancada&body=${encodeURIComponent(msg)}">Entrar por email</a>`)));
+        const body = `Olá! Quero entrar no Clube da Bancada.\n\nNome: ${nome}\nEmail: ${email}\n\nAutorizo o envio de novidades da comunidade e da coleção por email.`;
+        show("warn", "<b>O registo automático ainda não está ligado.</b> Para já, a adesão faz-se por email: abre a mensagem já escrita e envia. Confirmamos a tua entrada na resposta." +
+          (hasMail ? `<br><a class="btn btn-coal btn-sm" data-mail data-subject="Clube da Bancada" data-body="${esc(body)}" href="#">Enviar adesão por email</a>` : "<br><small>O email da loja ainda não está preenchido em config.js.</small>"));
         return;
       }
       fb.disabled = true; fb.textContent = "A enviar…";
@@ -179,11 +185,18 @@ ${CFG.preview ? '<div class="preview-note"><b>Pré-visualização.</b> Os campos
     if (remote) { draw({ votes: P.opcoes.map(() => 0), mine: null }, "A carregar os votos…"); fetchRemote().then(d => draw(d)).catch(() => draw(loadLocal(), "Sem ligação ao serviço de votos. Mostramos só o que está neste dispositivo.")); } else draw(loadLocal());
   }
   if (SEM) {
-    const n = $("#semNovidade"); if (n && SEM.novidade) { $(".k", n).textContent = SEM.novidade.titulo || "Novidade"; $("p", n).textContent = SEM.novidade.texto || ""; const a = $("a", n); if (a) { if (SEM.novidade.ligacao) { a.href = SEM.novidade.ligacao; a.textContent = SEM.novidade.ligacaoTexto || "Ver"; } else a.hidden = true; } }
+    const n = $("#semNovidade"); if (n && SEM.novidade) { $(".k", n).textContent = SEM.novidade.titulo || "Novidade"; $("p", n).textContent = SEM.novidade.texto || ""; const a = $("a", n); if (a) { if (SEM.novidade.ligacao) { a.href = SEM.novidade.ligacao; a.firstChild.textContent = (SEM.novidade.ligacaoTexto || "Ver") + " "; } else a.hidden = true; } }
     const t = $("#semTitulo"); if (t && SEM.titulo) t.textContent = SEM.titulo;
   }
-  const memTxt = $("#memTxt"), memCount = $("#memCount"), memWa = $("#memWa");
-  if (memTxt && memWa) { const base = memWa.dataset.msg; memTxt.addEventListener("input", () => { if (memCount) memCount.textContent = memTxt.value.length + " / " + memTxt.maxLength; if (hasWA) memWa.href = wa(base + memTxt.value.trim()); }); }
+
+  /* memória do mural → email com o texto */
+  const memTxt = $("#memTxt"), memCount = $("#memCount"), memMail = $("#memMail");
+  if (memTxt && memMail) {
+    const base = "Olá! Quero partilhar uma memória benfiquista para o Mural Encarnado.\n\nNome ou iniciais a publicar:\nLocalidade:\n\nA minha memória:\n";
+    const fim = "\n\nConfirmo que sou o autor deste texto e autorizo a sua publicação no Mural Encarnado. Posso pedir a remoção a qualquer momento.";
+    const upd = () => { if (memCount) memCount.textContent = memTxt.value.length + " / " + memTxt.maxLength; memMail.dataset.body = base + memTxt.value.trim() + fim; if (hasMail) memMail.href = mailto(memMail.dataset.subject, memMail.dataset.body); };
+    memTxt.addEventListener("input", upd); upd();
+  }
 
   /* ---------- mural e histórias ---------- */
   const mg = $("#muralGrid");
@@ -197,5 +210,5 @@ ${CFG.preview ? '<div class="preview-note"><b>Pré-visualização.</b> Os campos
     const e = $("#historiasEmpty"); if (e) e.hidden = true;
   }
 
-  window.BE = { CFG, PROD, DATA, esc, eur, wa, hasWA, picture, card, prazoTxt, wireLinks, reveal };
+  window.BE = { CFG, PROD, DATA, esc, eur, mailto, hasMail, picture, card, prazoTxt, wireLinks, reveal, trap, icons: I };
 })();

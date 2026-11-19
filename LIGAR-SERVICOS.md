@@ -4,8 +4,9 @@ Dois serviços, ambos com plano gratuito suficiente para começar:
 
 | O quê | Serviço | O que o site precisa | Onde se cola |
 |---|---|---|---|
-| Votos da pergunta da semana | Supabase | URL do projeto + chave `anon` | `site/config.js` → `votos` |
-| Clube da Bancada com dupla confirmação | Brevo, através de um pequeno proxy | URL do proxy | `site/config.js` → `newsletter.endpoint` |
+| Votos da pergunta da semana | Supabase | URL do projeto + chave `anon` | `site/assets/js/config.js` → `votos` |
+| Clube da Bancada com dupla confirmação | Brevo, através de um pequeno proxy | URL do proxy | `site/assets/js/config.js` → `newsletter.endpoint` |
+| Pedidos de encomenda do carrinho | Formspree (ou outro serviço de formulários) | URL do formulário | `site/assets/js/config.js` → `encomendas.endpoint` |
 
 O site nunca guarda chaves secretas. A chave `anon` do Supabase é pública por desenho e está protegida pelas regras da tabela. A chave do Brevo fica só no proxy.
 
@@ -53,7 +54,7 @@ create index votos_poll_idx on public.votos (poll_id);
 ### 1.3 Copiar os dados para o site
 1. **Project Settings** (roda dentada em baixo à esquerda) → **API**.
 2. Copia o **Project URL** (algo como `https://abcdefgh.supabase.co`) e a chave **anon public**.
-3. Abre `site/config.js` e preenche:
+3. Abre `site/assets/js/config.js` e preenche:
 
 ```js
 votos: {
@@ -144,7 +145,7 @@ export default {
 5. Copia o endereço do worker, algo como `https://clube-bancada.o-teu-nome.workers.dev`.
 
 ### 2.3 Ligar ao site
-Em `site/config.js`:
+Em `site/assets/js/config.js`:
 
 ```js
 newsletter: {
@@ -164,9 +165,29 @@ Make, n8n ou Zapier também servem: um webhook que recebe o JSON do formulário 
 
 ---
 
-## 3. Antes de publicar
+## 3. Formspree, para os pedidos de encomenda
 
-- `site/config.js`: `preview: false`, WhatsApp, email, titular, NIF e morada preenchidos.
+Sem nada configurado, o botão "Enviar pedido de encomenda" abre o programa de email do cliente com o pedido já escrito, endereçado ao email da loja. Funciona, mas depende de o cliente ter email configurado no telemóvel ou no computador. Com um serviço de formulários, o pedido chega-te sem o cliente sair do site.
+
+1. Conta em https://formspree.io (plano gratuito: 50 pedidos por mês).
+2. **New form**, nome `Encomendas Bancada Encarnada`, email de destino o da loja. Confirma o email que o Formspree te envia.
+3. Copia o endereço do formulário, algo como `https://formspree.io/f/abcdwxyz`.
+4. Em `site/assets/js/config.js`:
+
+```js
+encomendas: { endpoint: "https://formspree.io/f/abcdwxyz" },
+```
+
+5. Faz uma encomenda de teste no site. Deves receber um email com a referência (BE-AAMMDD-XXXX), as peças, as opções, a personalização, os totais, a morada e a forma de pagamento escolhida. O cliente vê "Pedido recebido" e o carrinho esvazia.
+6. Responde ao cliente (o email dele vem como resposta direta) com o total final e os dados de pagamento. A encomenda só fica confirmada quando o pagamento entrar.
+
+O site nunca cobra nada nem guarda dados de cartão. Os pedidos ficam também no painel do Formspree.
+
+---
+
+## 4. Antes de publicar
+
+- `site/assets/js/config.js`: `preview: false`, email da loja, titular, NIF e morada preenchidos. Os contactos são só email e redes sociais.
 - `python build.py` depois de qualquer alteração em `src/`, `data/` ou nas imagens.
 - Publica a pasta `site/` inteira (Netlify, Vercel, Cloudflare Pages ou o alojamento que usares). A pasta não tem base64 nem segredos.
 - Depois de publicar, confirma no Brevo que o domínio do remetente está verificado, para os emails de confirmação não caírem no spam.

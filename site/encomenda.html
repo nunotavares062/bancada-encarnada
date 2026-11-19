@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Finalizar encomenda · Bancada Encarnada</title>
+<meta name="description" content="Envia o pedido de encomenda. Confirmamos por email o total final e os dados de pagamento.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="canonical" href="https://nunotavares062.github.io/bancada-encarnada/encomenda.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<div id="site-header"></div>
+<main id="main" class="checkout-page">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Caminho"><a href="loja.html">Loja</a><span>Carrinho</span><span aria-current="page">Encomenda</span></nav>
+    <h1 class="co-title">Finalizar encomenda</h1>
+    <p class="lead">Envias o pedido e nós confirmamos por email o total final e os dados de pagamento. <b>Nada é cobrado no site.</b></p>
+    <div class="checkout" id="checkout">
+      <div id="checkoutMain">
+        <form id="orderForm" class="co-form" novalidate>
+          <section class="co-sec" aria-labelledby="co1">
+            <h2 id="co1">Contacto</h2>
+            <div class="field"><label for="oEmail">Email</label><input id="oEmail" name="email" type="email" autocomplete="email" inputmode="email" required></div>
+            <div class="field"><label for="oNome">Nome completo</label><input id="oNome" name="nome" type="text" autocomplete="name" required minlength="3"></div>
+          </section>
+          <section class="co-sec" aria-labelledby="co2">
+            <h2 id="co2">Entrega</h2>
+            <div class="field"><label for="oZona">Destino</label><select id="oZona" name="zona" required><option value="continental">Portugal continental</option><option value="acores">Açores (portes sob consulta)</option><option value="madeira">Madeira (portes sob consulta)</option></select></div>
+            <div class="field"><label for="oMorada">Morada</label><input id="oMorada" name="morada" type="text" autocomplete="street-address" required minlength="5"></div>
+            <div class="row2">
+              <div class="field"><label for="oCp">Código postal</label><input id="oCp" name="cp" type="text" autocomplete="postal-code" inputmode="numeric" placeholder="0000-000" pattern="\d{4}-\d{3}" required></div>
+              <div class="field"><label for="oLoc">Localidade</label><input id="oLoc" name="localidade" type="text" autocomplete="address-level2" required></div>
+            </div>
+            <div class="field"><label for="oTel">Telemóvel <span class="opt-tag" id="telReq">opcional</span></label><input id="oTel" name="telefone" type="tel" autocomplete="tel" inputmode="tel" pattern="[0-9 +]{9,16}" placeholder="9xx xxx xxx"></div>
+          </section>
+          <section class="co-sec" aria-labelledby="co3">
+            <h2 id="co3">Pagamento</h2>
+            <div class="pay-opts" id="payOpts" role="radiogroup" aria-labelledby="co3"></div>
+            <p class="note">Só pagas depois de confirmarmos a encomenda por email. Peças personalizadas começam a ser feitas depois do pagamento.</p>
+          </section>
+          <section class="co-sec" aria-labelledby="co4">
+            <h2 id="co4">Notas <span class="opt-tag">opcional</span></h2>
+            <div class="field"><label for="oNotas" class="sr">Notas para a encomenda</label><textarea id="oNotas" name="notas" maxlength="500" placeholder="É uma prenda? Queres que entregue noutro dia? Diz-nos aqui."></textarea></div>
+          </section>
+          <div class="hp" aria-hidden="true"><label>Não preencher<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+          <label class="check"><input type="checkbox" name="aceito" required><span>Li e aceito os <a href="termos.html" target="_blank">termos de venda</a> e a <a href="privacidade.html" target="_blank">política de privacidade</a>.</span></label>
+          <div class="status" role="status" aria-live="polite"></div>
+          <button class="btn btn-red btn-lg btn-block" type="submit">Enviar pedido de encomenda</button>
+          <p class="note">Ao enviar recebes uma referência. Respondemos por email com o total final e os dados de pagamento.</p>
+        </form>
+      </div>
+      <aside class="co-summary" id="summary" aria-label="Resumo da encomenda"></aside>
+    </div>
+  </div>
+</main>
+<div id="site-footer"></div>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/main.js" defer></script>
+<script src="assets/js/cart.js" defer></script>
+</body>
+</html>

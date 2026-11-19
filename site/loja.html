@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Loja · Bancada Encarnada</title>
-<meta name="description" content="Peças originais para benfiquistas, feitas em Portugal: vestuário, canecas, acessórios 3D, decoração e packs. Encomenda por WhatsApp ou Instagram, sem carrinho.">
+<meta name="description" content="Peças originais para benfiquistas, feitas em Portugal: vestuário, canecas, acessórios 3D, decoração e packs. Portes grátis acima de 40 € em Portugal continental.">
 <meta name="theme-color" content="#FFFFFF">
 <link rel="canonical" href="https://nunotavares062.github.io/bancada-encarnada/loja.html">
 <meta property="og:type" content="website"><meta property="og:locale" content="pt_PT"><meta property="og:site_name" content="Bancada Encarnada">
 <meta property="og:title" content="Loja · Bancada Encarnada">
-<meta property="og:description" content="Vestuário, canecas, acessórios 3D, decoração e packs. Feito em Portugal, por encomenda.">
+<meta property="og:description" content="Vestuário, canecas, acessórios 3D, decoração e packs. Feito em Portugal, à encomenda.">
 <meta property="og:url" content="https://nunotavares062.github.io/bancada-encarnada/loja.html">
 <meta property="og:image" content="https://nunotavares062.github.io/bancada-encarnada/assets/images/og-loja.jpg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
@@ -21,25 +21,34 @@
 <body>
 <div id="site-header"></div>
 <main id="main">
-  <section class="page-head">
+  <section class="shop-head">
     <div class="wrap">
-      <nav class="crumbs" aria-label="Caminho"><a href="index.html">Início</a><span>Loja</span></nav>
-      <span class="kicker">A coleção</span>
-      <h1 style="margin-top:14px">Peças originais, <span class="it red">feitas em Portugal.</span></h1>
-      <p class="lead">Sem carrinho nem conta. Escolhes a peça, carregas no botão e a mensagem chega-nos com o nome, a variante e a personalização. Respondemos em <span data-cfg="contacto.tempoResposta"></span>, <span data-cfg="contacto.horario"></span>.</p>
+      <nav class="crumbs" aria-label="Caminho"><a href="index.html">Início</a><span aria-current="page">Loja</span></nav>
+      <h1>Loja</h1>
+      <p class="lead">Peças originais para benfiquistas, feitas à encomenda em Portugal.</p>
     </div>
   </section>
-  <section class="sec tight" style="padding-top:0" aria-label="Catálogo">
-    <div class="wrap">
-      <div class="toolbar">
-        <div class="chips" id="chips" role="group" aria-label="Filtrar por categoria"></div>
-        <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
-          <span class="count" id="count" aria-live="polite"></span>
-          <label class="sort">Ordenar <select id="sort" aria-label="Ordenar peças"><option value="destaque">Em destaque</option><option value="novidades">Novidades</option><option value="preco-asc">Preço: do menor ao maior</option><option value="preco-desc">Preço: do maior ao menor</option></select></label>
-        </div>
+  <section class="wrap" aria-label="Coleção" id="procurar">
+    <div class="shop-bar">
+      <label class="search"><span class="sr">Procurar peças</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Procurar peças" autocomplete="off"></label>
+      <div class="chips" id="chips" role="group" aria-label="Categorias"></div>
+      <div class="tools-r">
+        <label class="switch"><input type="checkbox" id="disp"> Só disponíveis</label>
+        <label class="sort"><span class="sr">Ordenar</span><select id="sort" aria-label="Ordenar peças"><option value="destaque">Em destaque</option><option value="novidades">Novidades</option><option value="preco-asc">Preço: mais baixo</option><option value="preco-desc">Preço: mais alto</option><option value="nome">Nome: A a Z</option></select></label>
       </div>
-      <div id="catalogo"></div>
-      <div class="prep-box" style="margin-top:24px"><b>Como funciona a encomenda</b><p>Respondemos com o total, os portes (<span data-cfg="comercial.portesPT" data-fmt="eur"></span> em <span data-cfg="comercial.zona"></span>, grátis acima de <span data-cfg="comercial.portesGratisAcima" data-fmt="eur"></span>) e o prazo. Pagas por <span data-cfg="comercial.pagamentos"></span> e recebes por <span data-cfg="comercial.envio"></span>. Tens <span data-cfg="comercial.devolucoesDias"></span> dias para devolver peças sem personalização. <a class="link" href="termos.html">Termos de venda</a>.</p></div>
+    </div>
+    <div class="cat-head" id="catHead" hidden></div>
+    <p class="count" id="count" aria-live="polite"></p>
+    <div class="grid g4 shop-grid" id="catalogo"></div>
+  </section>
+  <section class="sec tight" aria-label="Como funciona">
+    <div class="wrap">
+      <ul class="how-buy">
+        <li><b>1. Escolhe</b><span>Junta as peças ao carrinho, com as opções e a personalização.</span></li>
+        <li><b>2. Envia o pedido</b><span>Preenches a morada e a forma de pagamento. Nada é cobrado no site.</span></li>
+        <li><b>3. Confirmamos por email</b><span>Respondemos com o total e os dados de <span data-cfg="comercial.pagamentos"></span>.</span></li>
+        <li><b>4. Recebes em casa</b><span>Por <span data-cfg="comercial.envio"></span>. Portes <span data-cfg="comercial.portesPT" data-fmt="eur"></span>, grátis acima de <span data-cfg="comercial.portesGratisAcima" data-fmt="eur"></span>.</span></li>
+      </ul>
     </div>
   </section>
 </main>
@@ -48,6 +57,7 @@
 <script src="assets/js/products.js"></script>
 <script src="assets/js/data.js"></script>
 <script src="assets/js/main.js" defer></script>
+<script src="assets/js/cart.js" defer></script>
 <script src="assets/js/shop.js" defer></script>
 </body>
 </html>
